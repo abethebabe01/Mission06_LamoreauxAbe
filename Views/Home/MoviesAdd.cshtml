@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "MoviesAdd";
+}
+@model Movies
+
+<h1>@ViewData["Title"]</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Movie</title>
+</head>
+<body>
+    <h1>Add New Movie</h1>
+    <form method="post">
+
+        <input asp-for="MovieId" type="hidden" required><br><br>
+
+        <label asp-for="Title" for="title">Title:</label><br>
+        <input asp-for="Title" type="text" id="title" name="title" required><br><br>
+
+        <label asp-for="Director" for="director">Director:</label><br>
+        <input asp-for="Director" type="text" id="director" name="director" ><br><br>
+
+        <label asp-for="Year" for="year">Year:</label><br>
+        <input asp-for="Year" type="number" id="year" name="year" required><br><br>
+
+        <label asp-for="CategoryId" for="genre">Genre:</label><br>
+        <select asp-for="CategoryId">
+            <option value=""> Select a Genre</option>
+            @foreach (Categories c in ViewBag.category)
+            {
+                <option value="@c.CategoryId">@c.Category</option>
+            }
+        </select><br><br>
+
+
+        <label asp-for="Rating" for="rating">Rating:</label><br>
+        <select asp-for="Rating" id="rating" name="rating" required>
+            <option value="G">G</option>
+            <option value="PG">PG</option>
+            <option value="PG-13">PG-13</option>
+            <option value="R">R</option>
+        </select><br><br>
+
+        <label asp-for="Edited" for="edited">Edited:</label><br>
+        <select asp-for="Edited" id="edited" name="edited" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select><br><br>
+
+        <label asp-for="LentTo" for="LentTo">Lent To:</label><br>
+        <input asp-for="LentTo" type="text" id="lent_to" name="LentTo"><br><br>
+
+        <label asp-for="CopiedToPlex" for="edited">Copied to PLEX:</label><br>
+        <select asp-for="CopiedToPlex" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select><br><br>
+
+        <label asp-for="Notes" for="Notes">Notes (max 25 characters):</label><br>
+        <input asp-for="Notes" type="text" id="notes" name="notes" maxlength="25"><br><br>
+
+        <input type="submit" value="Submit">
+
+        <div asp-validation-summary="All"></div>
+
+    </form>
+</body>
+</html>
+
